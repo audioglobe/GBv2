@@ -43,7 +43,7 @@ class OwnerController {
     private OwnerRepository owners;
     private static final Logger logger = LoggerFactory.getLogger(OwnerController.class);
 
-    @RequestMapping(value = "/owner/{ownerId}/getVisits", method = RequestMethod.GET)
+    @RequestMapping(value = "/team/{teamId}/getteam", method = RequestMethod.GET)
     public ResponseEntity<List<Visit>> getOwnerVisits(@PathVariable int ownerId){
         List<Pet> petList = this.owners.findById(ownerId).getPets();
         List<Visit> visitList = new ArrayList<Visit>();
@@ -54,11 +54,11 @@ class OwnerController {
         return new ResponseEntity<List<Visit>>(visitList, HttpStatus.OK);
     }
 
-    private List<Visit> getPetVisits(int petId){
+    private List<Visit> getTeamMembers(int petId){
         List<Visit> visitList = new ArrayList<Visit>();
         RestTemplate restTemplate = new RestTemplate();
-        Pet pet = restTemplate.getForObject("http://"+serviceEndpoint+"/pet/"+petId, Pet.class);
-        logger.info(pet.getVisits().toString());
-        return pet.getVisits();
+        team team = restTemplate.getForObject("http://"+serviceEndpoint+"/team/"+petId, Team.class);
+        logger.info(pet.getTeamMembers().toString());
+        return team.getTeamMembers();
     }
 }
