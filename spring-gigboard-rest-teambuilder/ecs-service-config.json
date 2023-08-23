@@ -2,6 +2,6 @@
     "count": "2",
     "memory": "1024",
     "port": "8080",
-    "path": "/owner/*",
+    "path": "/team/*",
     "priority": "2"
 }

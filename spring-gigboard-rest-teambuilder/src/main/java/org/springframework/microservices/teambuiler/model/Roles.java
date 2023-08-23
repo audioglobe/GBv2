@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.teambuilder.model;
+package org.springframework.microservices.teambuilder.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,8 +43,8 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  */
 @Entity
-@Table(name = "teamMembers")
-public class teamMembers extends NamedEntity {
+@Table(name = "roles")
+public class Pet extends NamedEntity {
 
     @Column(name = "birth_date")
     @Temporal(TemporalType.DATE)
@@ -53,13 +53,13 @@ public class teamMembers extends NamedEntity {
 
     @ManyToOne
     @JoinColumn(name = "type_id")
-    private MemberType type;
+    private PetType type;
 
     @ManyToOne
-    @JoinColumn(name = "team_id")
+    @JoinColumn(name = "owner_id")
     private Owner owner;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teamId", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "petId", fetch = FetchType.EAGER)
     private Set<Visit> visits = new LinkedHashSet<>();
 
     public void setBirthDate(Date birthDate) {

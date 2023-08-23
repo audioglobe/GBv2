@@ -1,1 +1,1 @@
-This is the repo for the GigBoard 2.0
+The All new gigboard

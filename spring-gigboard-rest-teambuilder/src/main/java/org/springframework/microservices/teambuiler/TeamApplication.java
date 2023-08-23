@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.samples.teambuilder;
+package org.springframework.microservices.teambuilder;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -29,7 +29,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TeamApplication {
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(Tea Application.class, args);
+        SpringApplication.run(TeamApplication.class, args);
     }
 
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.teambuilder.owner;
+package org.springframework.microservices.teambuilder.team;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +43,7 @@ class OwnerController {
     private OwnerRepository owners;
     private static final Logger logger = LoggerFactory.getLogger(OwnerController.class);
 
-    @RequestMapping(value = "/team/{teamId}/getteam", method = RequestMethod.GET)
+    @RequestMapping(value = "/team/{teamId}/getTeams", method = RequestMethod.GET)
     public ResponseEntity<List<Visit>> getOwnerVisits(@PathVariable int ownerId){
         List<Pet> petList = this.owners.findById(ownerId).getPets();
         List<Visit> visitList = new ArrayList<Visit>();
@@ -54,11 +54,11 @@ class OwnerController {
         return new ResponseEntity<List<Visit>>(visitList, HttpStatus.OK);
     }
 
-    private List<Visit> getTeamMembers(int petId){
+    private List<Visit> getPetVisits(int petId){
         List<Visit> visitList = new ArrayList<Visit>();
         RestTemplate restTemplate = new RestTemplate();
-        team team = restTemplate.getForObject("http://"+serviceEndpoint+"/team/"+petId, Team.class);
-        logger.info(pet.getTeamMembers().toString());
-        return team.getTeamMembers();
+        Pet pet = restTemplate.getForObject("http://"+serviceEndpoint+"/team/"+petId, Pet.class);
+        logger.info(pet.getVisits().toString());
+        return pet.getVisits();
     }
 }

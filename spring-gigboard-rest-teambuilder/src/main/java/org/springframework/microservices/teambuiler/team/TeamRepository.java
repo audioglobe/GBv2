@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.teambuilder.owner;
+package org.springframework.microservices.teambuilder.owner;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,18 +22,19 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.samples.petclinic.model.Owner;
-import org.springframework.samples.petclinic.model.Pet;
-import org.springframework.samples.petclinic.model.Visit;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.microservices.petclinic.model.Team;
+/**import org.springframework.microservices.petclinic.model.GigMember;
+import org.springframework.microservices.petclinic.model.Projects;
+import org.springframework.microservices.annotation.Transactional;
+*/
 
 /**
  * Repository class for <code>Owner</code> domain objects All method names are compliant with Spring Data naming
  * conventions so this interface can easily be extended for Spring Data See here: http://static.springsource.org/spring-data/jpa/docs/current/reference/html/jpa.repositories.html#jpa.query-methods.query-creation
  *
  */
-@RepositoryRestResource(collectionResourceRel = "owner", path = "owner")
-public interface OwnerRepository extends PagingAndSortingRepository<Owner, Integer> {
+@RepositoryRestResource(collectionResourceRel = "team", path = "team")
+public interface OwnerRepository extends PagingAndSortingRepository<team, Integer> {
 
     /**
      * Retrieve {@link Owner}s from the data store by last name, returning all owners
@@ -51,8 +52,8 @@ public interface OwnerRepository extends PagingAndSortingRepository<Owner, Integ
      * @param id the id to search for
      * @return the {@link Owner} if found
      */
-    @Query("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.id =:id")
+    @Query("SELECT team FROM Team team left join fetch team.gigmember WHERE owner.id =:id")
     @Transactional(readOnly = true)
-    Owner findById(@Param("id") Integer id);
+    team findById(@Param("id") Integer id);
 
 }
